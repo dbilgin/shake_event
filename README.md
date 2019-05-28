@@ -27,7 +27,7 @@ class _MyStatefulWidgetState extends State<HomeStatefulWidget> with ShakeHandler
   
   @override
   Widget build(BuildContext context) {
-    startListeningShake();
+    startListeningShake(20); //20 is the default threshold value for the shake event
     ...
   }
 }
