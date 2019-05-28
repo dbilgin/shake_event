@@ -21,7 +21,7 @@ class ShakeHandler {
 
   }
 
-  startListening() {
+  startListeningShake() {
     if (_accelerometerStream == null) {
       _listenForShake();
       _subscribeForReset();
@@ -68,12 +68,12 @@ class ShakeHandler {
   }
 
   void _restartListener(dynamic) {
-    resetListeners();
+    resetShakeListeners();
     _listenForShake();
     _subscribeForReset();
   }
 
-  void resetListeners() {
+  void resetShakeListeners() {
     _shakeDetector.close();
     _thresholdController.close();
     if (_accelerometerStream != null) {
