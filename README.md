@@ -1,14 +1,34 @@
 # shake_event
 
-A cross-platform shake event listener.
+A cross-platform shake event listener for Flutter applications.
 
-## Getting Started
+## Installation
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+First, add `shake_event` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+### Example
+``` dart
+import 'package:shake_event/shake_event.dart';
+
+...
+class _MyStatefulWidgetState extends State<HomeStatefulWidget> with ShakeHandler {
+
+  @override
+  void dispose() {
+    resetListeners();
+    super.dispose();
+  }
+  
+  @override
+  shakeEventListener() {
+    //DO ACTIONS HERE
+    return super.shakeEventListener();
+  }
+  
+  @override
+  Widget build(BuildContext context) {
+    startListening();
+    ...
+  }
+}
+```
