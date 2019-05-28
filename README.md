@@ -15,7 +15,7 @@ class _MyStatefulWidgetState extends State<HomeStatefulWidget> with ShakeHandler
 
   @override
   void dispose() {
-    resetListeners();
+    resetShakeListeners();
     super.dispose();
   }
   
@@ -27,7 +27,7 @@ class _MyStatefulWidgetState extends State<HomeStatefulWidget> with ShakeHandler
   
   @override
   Widget build(BuildContext context) {
-    startListening();
+    startListeningShake();
     ...
   }
 }
