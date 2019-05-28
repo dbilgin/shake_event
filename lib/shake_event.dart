@@ -17,11 +17,13 @@ class ShakeHandler {
   var _shakeDetector = StreamController<bool>();
   Stream<bool> get _shakeEvent => _shakeDetector.stream.transform(ThrottleStreamTransformer((_) => TimerStream(true, const Duration(seconds: 2))));
 
-  shakeEventListener(){
+  double _detectionThreshold = 20.0;
 
+  shakeEventListener(){
   }
 
-  startListeningShake() {
+  startListeningShake(double detectionThreshold) {
+    _detectionThreshold = detectionThreshold;
     if (_accelerometerStream == null) {
       _listenForShake();
       _subscribeForReset();
@@ -30,7 +32,6 @@ class ShakeHandler {
 
   _listenForShake() {
     const CircularBufferSize = 10;
-    double detectionThreshold = 20.0;
 
     List<double> circularBuffer = List.filled(CircularBufferSize, 0.0);
     int index = 0;
@@ -38,7 +39,7 @@ class ShakeHandler {
 
     _thresholdController.stream.listen((value) {
       // safety
-      if (value > 30) detectionThreshold = value * 1.0;
+      if (value > 30) _detectionThreshold = value * 1.0;
     });
 
     _accelerometerStream =
@@ -58,7 +59,7 @@ class ShakeHandler {
           if (event.x < minX) minX = event.x;
           if (event.x > maxX) maxX = event.x;
 
-          if (maxX - minX > detectionThreshold) {
+          if (maxX - minX > _detectionThreshold) {
             shakeEventListener();
             circularBuffer.fillRange(0, CircularBufferSize, 0.0);
             minX = 0.0;
