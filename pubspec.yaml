@@ -1,6 +1,6 @@
 name: shake_event
 description: A cross-platform shake event listener.
-version: 0.0.1
+version: 0.0.3
 author: iatsu<denizcanbilgin@gmail.com>
 homepage: https://github.com/iatsu/shake_event
 
