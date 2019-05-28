@@ -5,6 +5,10 @@ A cross-platform shake event listener for Flutter applications.
 ## Installation
 
 First, add `shake_event` as a [dependency in your pubspec.yaml file](https://flutter.io/platform-plugins/).
+```
+dependencies:
+  shake_event: ^0.0.1
+```
 
 ### Example
 ``` dart
